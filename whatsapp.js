@@ -11,9 +11,9 @@ import makeWASocket, {
     getAggregateVotesInPollMessage,
     fetchLatestBaileysVersion,
     WAMessageStatus,
-} from '@whiskeysockets/baileys'
+} from 'baileys'
 
-import proto from '@whiskeysockets/baileys'
+import proto from 'baileys'
 
 import { toDataURL } from 'qrcode'
 import __dirname from './dirname.js'
@@ -104,7 +104,7 @@ const createSession = async (sessionId, res = null, options = { usePairingCode: 
     }, 10000)
 
     /**
-     * @type {import('@whiskeysockets/baileys').AnyWASocket}
+     * @type {import('baileys').AnyWASocket}
      */
     const wa = makeWASocket.default({
         version,
@@ -378,7 +378,7 @@ const createSession = async (sessionId, res = null, options = { usePairingCode: 
 }
 
 /**
- * @returns {(import('@whiskeysockets/baileys').AnyWASocket|null)}
+ * @returns {(import('baileys').AnyWASocket|null)}
  */
 const getSession = (sessionId) => {
     return sessions.get(sessionId) ?? null
@@ -409,7 +409,7 @@ const getChatList = (sessionId, isGroup = false) => {
 }
 
 /**
- * @param {import('@whiskeysockets/baileys').AnyWASocket} session
+ * @param {import('baileys').AnyWASocket} session
  */
 const isExists = async (session, jid, isGroup = false) => {
     try {
@@ -430,7 +430,7 @@ const isExists = async (session, jid, isGroup = false) => {
 }
 
 /**
- * @param {import('@whiskeysockets/baileys').AnyWASocket} session
+ * @param {import('baileys').AnyWASocket} session
  */
 const sendMessage = async (session, receiver, message, delayMs = 1000) => {
     try {
@@ -442,7 +442,7 @@ const sendMessage = async (session, receiver, message, delayMs = 1000) => {
 }
 
 /**
- * @param {import('@whiskeysockets/baileys').AnyWASocket} session
+ * @param {import('baileys').AnyWASocket} session
  */
 const updateProfileStatus = async (session, status) => {
     try {
