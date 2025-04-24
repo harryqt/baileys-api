@@ -1,7 +1,7 @@
 import { rmSync, readdir, existsSync } from 'fs'
 import { join } from 'path'
 import pino from 'pino'
-import makeWASocket, {
+import makeWASocketModule, {
     useMultiFileAuthState,
     makeInMemoryStore,
     makeCacheableSignalKeyStore,
@@ -103,10 +103,13 @@ const createSession = async (sessionId, res = null, options = { usePairingCode: 
         }
     }, 10000)
 
+    // Make both Node and Bun compatible
+    const makeWASocket = makeWASocketModule.default ?? makeWASocketModule;
+
     /**
      * @type {import('baileys').AnyWASocket}
      */
-    const wa = makeWASocket.default({
+    const wa = makeWASocket({
         version,
         printQRInTerminal: false,
         mobile: false,
